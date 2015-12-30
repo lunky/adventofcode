@@ -5,20 +5,16 @@ class Matchsticks
     end
     
     def read(line)
-        linelength = line.length 
-        foundChar = /\\x(..)/ =~ line 
-        foundHex = /\\x([0-9a-fA-F]{2})/ =~ line 
-        print " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~foundHex ~#{foundHex}~" if (foundChar && !foundHex)
-        @totes = @totes + linelength
-        print ":::##{line}# length:#{linelength} "
+        orig = line
         line = line.sub(/^\"(.*)\"$/,'\1')
         line = line.gsub(/\\\"/,'"')
+        line = line.gsub(/\\\\/,'\\')
         line = line.gsub(/\\x([0-9A-Fa-f]{2})/) do
             $1.hex.chr
         end
         length = line.length
-        puts " => ##{line}# length:#{length}" 
         @count += length
+        @totes += orig.length
         length
     end
     

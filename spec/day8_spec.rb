@@ -70,7 +70,7 @@ describe "Matchsticks" do
         line = "\"xziq\\\x18ybyv\x9am\"neacoqjzytertisysza\""
         line = "\"xziq\\\\\\x18ybyv\\x9am\\\"neacoqjzytertisysza\""
         @sut.read(line)
-        expect(@sut.count).to eq(33)
+        expect(@sut.count).to eq(32)
         expect(@sut.totes).to eq(42)
     end
     
