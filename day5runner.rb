@@ -1,4 +1,4 @@
-require "./lib/adventnicestring"
+require "./lib/day5"
 decider = Decider.new
 contents = File.readlines("./data/day5data.txt")
 count = contents.inject(0){ |sum, line|
