@@ -89,4 +89,44 @@ describe "Matchsticks" do
         expect(@sut.count).to eq(11)
         expect(@sut.diff).to eq(12)
     end
+    
+    # "" encodes to "\"\"", an increase from 2 characters to 6.
+    it('"" encodes to "\"\"", an increase from 2 characters to 6.') do
+        @sut.read("\"\"")
+        expect(@sut.totes).to eq(2)
+        expect(@sut.count).to eq(0)
+        expect(@sut.encoded).to eq(6)
+    end
+    it('"abc" encodes to "\"abc\"", an increase from 5 characters to 9.') do
+        @sut.read("abc")
+        expect(@sut.totes).to eq(3)
+        expect(@sut.count).to eq(3)
+        expect(@sut.encoded).to eq(9)
+    end
+    it('"aaa\"aaa" encodes to "\"aaa\\\\"aaa\"", an increase from 10 characters to 16.') do
+        #                     "\"aaa\\\"aaa\""
+        @sut.read("\"aaa\\\"aaa\"")
+        expect(@sut.totes).to eq(10)
+        expect(@sut.count).to eq(7)
+        expect(@sut.encoded).to eq(16)
+    end
+    it('"\x27" encodes to "\"\\x27\"", an increase from 6 characters to 11.') do
+        @sut.read("\"\\x27\"")
+        expect(@sut.totes).to eq(6)
+        expect(@sut.count).to eq(1)
+        expect(@sut.encoded).to eq(11)
+    end
+    it('encodes "yrbajyndte\\rm"  to 22') do
+        @sut.read("\"yrbajyndte\\\\rm\"")
+        expect(@sut.encoded).to eq(22)
+    end
+    it('calculates reencoded totals correctly') do
+        @sut.read("\"\"") # 2 => 6
+        @sut.read("\"abc\"") # 5 => 9
+        @sut.read("\"aaa\\\"aaa\"") # 10 => 16
+        @sut.read("\"\\x27\"") # 6 => 11
+        expect(@sut.encoded).to eq(42)
+        expect(@sut.totes).to eq(23)
+        expect(@sut.reencoded_diff).to eq(19)
+    end
 end
