@@ -1,6 +1,6 @@
 ﻿// Learn more about F# at http://fsharp.net
 // See the 'F# Tutorial' project for more help.
-open day9
+open adventofcode
 open Day9
 open System.IO
 open System.Text.RegularExpressions

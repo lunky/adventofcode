@@ -9,10 +9,11 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>runner</RootNamespace>
     <AssemblyName>runner</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFSharpCoreVersion>4.4.0.0</TargetFSharpCoreVersion>
     <Name>runner</Name>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -71,8 +72,8 @@
     <Reference Include="System.Numerics" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\day9\day9.fsproj">
-      <Name>day9</Name>
+    <ProjectReference Include="..\adventofcode\adventofcode.fsproj">
+      <Name>adventofcode</Name>
       <Project>{01a04438-f6d7-488b-ab4a-7be93aec972a}</Project>
       <Private>True</Private>
     </ProjectReference>
