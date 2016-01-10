@@ -42,15 +42,16 @@ let runDay9() =
 
 let runDay10() =
 
-    printfn "runDay10"
-    let str = ['a'; 'a'; 'a'; 'b'; 'b'; 'c'; 'd'; 'd' ]
-
-
-
-    let words = List.fold breakIntoGroups [ [] ] str
-
-    words |> printfn "final # %A #"
-
+//    printfn "runDay10"
+//    let str = ['a'; 'a'; 'a'; 'b'; 'b'; 'c'; 'd'; 'd' ]
+//
+//
+//
+//    let words = List.fold breakIntoGroups [ [] ] str
+//
+//    words |> printfn "final # %A #"
+    let x = seeNSay "1121"
+    printfn "1121 %A" x
     0
 
 [<EntryPoint>]
