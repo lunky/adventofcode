@@ -8,9 +8,9 @@
     <ProjectGuid>01a04438-f6d7-488b-ab4a-7be93aec972a</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>day9</RootNamespace>
-    <AssemblyName>day9</AssemblyName>
+    <AssemblyName>adventofcode</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFSharpCoreVersion>4.3.1.0</TargetFSharpCoreVersion>
+    <TargetFSharpCoreVersion>4.3.0.0</TargetFSharpCoreVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Name>day9</Name>
     <TargetFrameworkProfile />

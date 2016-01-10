@@ -67,6 +67,7 @@
     <Compile Include="AssemblyInfo.fs" />
     <None Include="App.config" />
     <Compile Include="day9tests.fs" />
+    <Compile Include="day10tests.fs" />
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -86,6 +87,8 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Numerics" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\adventofcode\adventofcode.fsproj">
       <Name>adventofcode</Name>
       <Project>{01a04438-f6d7-488b-ab4a-7be93aec972a}</Project>

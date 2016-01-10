@@ -2,6 +2,7 @@
 // See the 'F# Tutorial' project for more help.
 open adventofcode
 open Day9
+open Day10
 open System.IO
 open System.Text.RegularExpressions
 
@@ -45,19 +46,6 @@ let runDay10() =
     let str = ['a'; 'a'; 'a'; 'b'; 'b'; 'c'; 'd'; 'd' ]
 
 
-    let breakIntoGroups (acc : char list list) c =
-        let revAcc = List.rev acc
-        let lastElement = List.last acc
-
-        // if the lastElement is empty or it matches the last character added
-        if Seq.isEmpty lastElement ||  c = Seq.head lastElement then
-            // And add this character at the end
-            let likeGroup = lastElement @ [ c ]
-            // Finally put this updated group of like characters at the end of our accumulator
-            let updatedAcc = likeGroup :: (List.tail revAcc)
-            List.rev updatedAcc
-        else
-            acc @ [ [c] ]
 
     let words = List.fold breakIntoGroups [ [] ] str
 
