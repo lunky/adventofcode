@@ -5,9 +5,9 @@ open Day9
 open System.IO
 open System.Text.RegularExpressions
 
-[<EntryPoint>]
-let main argv = 
+let runDay9() = 
 
+    
     let citysList  = [
         {city1= "London"; city2= "Dublin"; distance= 464};
         {city1= "London"; city2= "Belfast"; distance= 518};
@@ -17,8 +17,6 @@ let main argv =
     shortestDistance citysList |> printfn "%A" 
 
     let lines = File.ReadAllLines("day9data.txt") |> Array.toList  
-    //let items = parseFile lines
-
 
     let (|FirstRegexGroup|_|) pattern input =
        let m = Regex.Match(input,pattern) 
@@ -30,14 +28,6 @@ let main argv =
         if m.Success then Some(List.tail [ for g in m.Groups -> g.Value ])
         else None
  
-//    //Example:
-//    let phone = "(555) 555-5555"
-//    match phone with
-//    | Regex @"\(([0-9]{3})\)[-. ]?([0-9]{3})[-. ]?([0-9]{4})" [ area; prefix; suffix ] ->
-//    printfn "Area: %s, Prefix: %s, Suffix: %s" area prefix suffix
-//    | _ -> printfn "Not a phone number"
-
-         // create a function to call the pattern
     let testRegex str = 
         match str with
         | Regex "(.*?) to (.*) = (\d*)" [incity1; incity2; indistance] -> 
@@ -45,30 +35,41 @@ let main argv =
 
     let linz = lines |> List.collect (fun l -> [testRegex l])
     shortestDistance linz |> printfn "Shortest %A" 
-//    shortestRoute linz |> printfn "Shortest %A" 
     longestDistance linz |> printfn "Longest %A" 
+    0
 
-    // test
-//    for line in linz do
-//        printfn "%A" line
-//    let ctz = distinctCities citysList 
-//    let permutations = citysList |> distinctCities |> getPerms ctz.Length
-//
-//    let test = citysList |> getPerms ((ctz.Length)-1)   |> printfn "%A" 
-  
-//    let mapped = getSegments permutations |> List.map (fun segment -> (Seq.map ( fun el -> (cityLookup el citysList) ) segment ))
-//
-//    for perm in mapped do
-//        printfn "route = "
-//        for j in perm do
-//            printfn "from %A to %A = %A "  j.city1 j.city2 j.distance
-//
-//    let shortest = Seq.minBy (fun leg -> Seq.sumBy (fun  x ->  x.distance) leg ) mapped
-//    printfn "Shortest distance = %A  %d" shortest (shortest |> Seq.sumBy (fun  x ->  x.distance))
-//
-//    citysList |> distinctCities |> printfn "%A" 
 
+let runDay10() =
+
+    printfn "runDay10"
+    let str = ['a'; 'a'; 'a'; 'b'; 'b'; 'c'; 'd'; 'd' ]
+
+
+    let breakIntoGroups (acc : char list list) c =
+        let revAcc = List.rev acc
+        let lastElement = List.last acc
+
+        // if the lastElement is empty or it matches the last character added
+        if Seq.isEmpty lastElement ||  c = Seq.head lastElement then
+            // And add this character at the end
+            let likeGroup = lastElement @ [ c ]
+            // Finally put this updated group of like characters at the end of our accumulator
+            let updatedAcc = likeGroup :: (List.tail revAcc)
+            List.rev updatedAcc
+        else
+            acc @ [ [c] ]
+
+    let words = List.fold breakIntoGroups [ [] ] str
+
+    words |> printfn "final # %A #"
+
+    0
+
+[<EntryPoint>]
+let main argv = 
+    printfn "entry"
+    //runDay9()
+    runDay10()
+    System.Console.WriteLine("\n~~~ Press Enter ~~~")
     let ignoring = System.Console.ReadLine()
-
-    
     0 // return an integer exit code
