@@ -6,7 +6,8 @@ module Day10 =
     let groupCharacters (str: string) =
         let breakIntoGroups (acc : char list list) c =
             let revAcc = List.rev acc
-            let lastElement = Seq.last acc
+            //let lastElement = Seq.last acc
+            let lastElement = Seq.head revAcc
 
             // if the lastElement is empty or it matches the last character added
             if Seq.isEmpty lastElement ||  c = Seq.head lastElement then
