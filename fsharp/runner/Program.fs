@@ -49,12 +49,12 @@ let runDay10() =
     let now = System.DateTime.Now
 
     let compute acc el =
-         let newVal = seeNSay acc
+         let newVal = lookNSay acc
          printfn "%A %d.  %A" (System.DateTime.Now.Subtract now) el (Seq.length newVal )
          let acc=newVal
          newVal
 
-    List.fold compute "3113322113" [1..40]
+    List.fold compute "3113322113" [1..50]
 
 
 [<EntryPoint>]
