@@ -41,27 +41,24 @@ let runDay9() =
 
 
 let runDay10() =
-//    printfn "runDay10"
-//    let str = ['a'; 'a'; 'a'; 'b'; 'b'; 'c'; 'd'; 'd' ]
-//    let words = List.fold breakIntoGroups [ [] ] str
-//
-//    words |> printfn "final # %A #"
+
     let now = System.DateTime.Now
 
     let compute acc el =
          let newVal = lookNSay acc
-         printfn "%A %d.  %A" (System.DateTime.Now.Subtract now) el (Seq.length newVal )
+         printfn "%A %d  %A" (System.DateTime.Now.Subtract now) el (Seq.length newVal )
          let acc=newVal
          newVal
 
     List.fold compute "3113322113" [1..50]
-
+//
 
 [<EntryPoint>]
 let main argv = 
     printfn "entry"
     //runDay9()
-    runDay10()
+    //runDay10()
+
     System.Console.WriteLine("\n~~~ Press Enter ~~~")
     let ignoring = System.Console.ReadLine()
     0 // return an integer exit code
