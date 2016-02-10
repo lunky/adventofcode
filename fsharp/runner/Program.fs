@@ -41,11 +41,7 @@ let runDay9() =
     0
 
 let runDay11() = 
-    let next = getNextPassword "hepxcrrq" 
-    implode(next) |> printfn "%A"
-    let next = getNextPassword( implode next)
-    implode(next) |> printfn "%A"
-        
+    getNextPasswords "hepxcrrq" passesComplexityRules |> Seq.take 2 |> printfn "next: %A"
 
 let runDay10() =
 

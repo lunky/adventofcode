@@ -26,12 +26,12 @@ module Day11 =
 
      
     let passesComplexityRules (input: string) = 
-        let n = Regex.Match(input, "abc|bcd|cde|def|efg|fgh|ghi|hij|ijk|jkl|klm|lmn|mno|nop|opq|pqr|qrs|rst|stu|tuv|uvw|vwx|wxy|xyz") in
-        let m = Regex.Match(input, "^[^iol]*$") in
-        let o = Regex.Matches(input, "(?:(\w)\1)") |> Seq.cast
-        let p = Seq.toList (Seq.distinct o)
+        let foundRunsOfThree = Regex.Match(input, "abc|bcd|cde|def|efg|fgh|ghi|hij|ijk|jkl|klm|lmn|mno|nop|opq|pqr|qrs|rst|stu|tuv|uvw|vwx|wxy|xyz") 
+        let foundBadLetters = Regex.Match(input, "^[^iol]*$")
+        let foundPairs = Regex.Matches(input, "(?:(\w)\1)") |> Seq.cast
+        let foundDuplicatedPairs = Seq.toList (Seq.distinct foundPairs)
 
-        m.Success && n.Success && true  && p.Length >= 2
+        foundRunsOfThree.Success && foundBadLetters.Success && true  && foundDuplicatedPairs.Length >= 2
 
 
     let rec getNextPassword (input: string) = 
@@ -39,3 +39,12 @@ module Day11 =
         if passesComplexityRules(  implode next ) then
            next
         else  getNextPassword( implode next )
+
+    let rec getNextPasswords (input: string) passwordValidation = 
+        seq{
+            let snext = incSeries input 
+            if passwordValidation(  implode snext ) then
+                yield implode snext
+            yield! getNextPasswords (implode snext) passwordValidation 
+        }
+
