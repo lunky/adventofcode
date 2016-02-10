@@ -69,6 +69,7 @@
     <Compile Include="day9tests.fs" />
     <Compile Include="day10tests.fs" />
     <Content Include="packages.config" />
+    <Compile Include="day11tests.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FsUnit.CustomMatchers">

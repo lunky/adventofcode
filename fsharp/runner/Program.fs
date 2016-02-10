@@ -3,6 +3,7 @@
 open adventofcode
 open Day9
 open Day10
+open Day11
 open System.IO
 open System.Text.RegularExpressions
 
@@ -39,6 +40,12 @@ let runDay9() =
     longestDistance linz |> printfn "Longest %A" 
     0
 
+let runDay11() = 
+    let next = getNextPassword "hepxcrrq" 
+    implode(next) |> printfn "%A"
+    let next = getNextPassword( implode next)
+    implode(next) |> printfn "%A"
+        
 
 let runDay10() =
 
@@ -56,6 +63,7 @@ let runDay10() =
 [<EntryPoint>]
 let main argv = 
     printfn "entry"
+    runDay11()
     //runDay9()
     //runDay10()
 
