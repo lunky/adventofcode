@@ -9,7 +9,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>runner</RootNamespace>
     <AssemblyName>runner</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFSharpCoreVersion>4.4.0.0</TargetFSharpCoreVersion>
     <Name>runner</Name>
@@ -64,6 +64,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="packages.config" />
+    <Content Include="day12data.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\adventofcode\adventofcode.fsproj">
