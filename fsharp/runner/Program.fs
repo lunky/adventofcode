@@ -6,6 +6,13 @@ open Day12
 open System.IO
 open System.Text.RegularExpressions
 
+let runDay12() = 
+//    sumNumbersFromJson "[1,[4,5],{\"c\":\"red\",\"b\":2},{\"q\":10}, 3]" 
+//    sumNoRedNumbersFromJson "[1,[4,5],{\"c\":\"red\",\"b\":2},{\"q\":10}, 3]" 
+    File.ReadAllText("day12data.txt") |> sumNumbersFromJson //"[1,[4,5],{\"c\":\"red\",\"b\":2},{\"q\":10}, 3]" 
+    File.ReadAllText("day12data.txt") |> sumNoRedNumbersFromJson //"[1,[4,5],{\"c\":\"red\",\"b\":2},{\"q\":10}, 3]" 
+    ()
+
 let runDay9() = 
 
     
@@ -42,6 +49,9 @@ let runDay9() =
 let runDay11() = 
     getNextPasswords "hepxcrrq" passesComplexityRules |> Seq.take 2 |> printfn "next: %A"
 
+let runDay1() = 
+    getNextPasswords "hepxcrrq" passesComplexityRules |> Seq.take 2 |> printfn "next: %A"
+
 let runDay10() =
 
     let now = System.DateTime.Now
@@ -58,9 +68,10 @@ let runDay10() =
 [<EntryPoint>]
 let main argv = 
     printfn "entry"
-    runDay11()
     //runDay9()
     //runDay10()
+//    runDay11()
+    runDay12()
 
     System.Console.WriteLine("\n~~~ Press Enter ~~~")
     let ignoring = System.Console.ReadLine()
