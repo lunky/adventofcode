@@ -27,5 +27,5 @@ let ``sumNumbersFromJson adds all the numbers``() =
 
 [<Test>]
 let ``sumNoRedNumbersFromJson adds all the numbers ignore objects with property  'red' ``() = 
-    let testJson = "[{\"e\":-14},{\"a\":\"red\", \"q\":30}]"
-    sumNoRedNumbersFromJson testJson |> should equal -14
+    let testJson = "[5, 5, {\"e\":-14},{\"a\":\"red\", \"q\":30}]"
+    sumNoRedNumbersFromJson testJson |> should equal -4

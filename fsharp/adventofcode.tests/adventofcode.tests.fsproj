@@ -8,7 +8,7 @@
     <ProjectGuid>fe9887b7-7142-40ef-9371-079a515fc985</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>day9.tests</RootNamespace>
-    <AssemblyName>day9.tests</AssemblyName>
+    <AssemblyName>adventofcode.tests</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFSharpCoreVersion>4.4.0.0</TargetFSharpCoreVersion>
@@ -73,6 +73,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="FSharp.Data">
+      <HintPath>..\packages\FSharp.Data.2.2.5\lib\net40\FSharp.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="FsUnit.NUnit">
       <HintPath>..\packages\FsUnit.2.0.0\lib\net45\FsUnit.NUnit.dll</HintPath>
       <Private>True</Private>
@@ -83,6 +87,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\adventofcode\adventofcode.fsproj">
