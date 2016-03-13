@@ -68,6 +68,7 @@
     <Content Include="packages.config" />
     <Content Include="app.config" />
     <Compile Include="day13.fs" />
+    <Compile Include="day14.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FSharp.Core">

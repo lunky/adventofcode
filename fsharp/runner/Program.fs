@@ -4,6 +4,7 @@ open Day10
 open Day11
 open Day12
 open Day13
+open Day14
 open System.IO
 open System.Text.RegularExpressions
 
@@ -49,6 +50,14 @@ let runDay9() =
     longestDistance linz |> printfn "Longest %A" 
     0
 
+let runDay14() =
+    printfn "Day14 :" 
+    let puzzleValue = 2503
+    let rules = File.ReadAllLines("day14data.txt") |> Array.toList 
+    let fastest = getFastest rules puzzleValue
+    printfn "*****"
+    printfn "Furthest was %d km by %s" (fst fastest) (snd fastest).name
+
 let runDay13() = 
 //        File.ReadAllLines("day13data.txt") |> Array.toList |> calculateMostChange |> printfn "response = %A"
         File.ReadAllLines("day13data.txt") |> Array.toList |> calculateMostChangeAddMe |> printfn "response = %A"
@@ -74,13 +83,13 @@ let runDay10() =
 
 [<EntryPoint>]
 let main argv = 
-    printfn "entry"
-    //runDay9()
-    //runDay10()
+    printfn "main => "
+//    runDay9()
+//    runDay10()
 //    runDay11()
-    //runDay12()
-    runDay13()
-
+//    runDay12()
+//    runDay13()
+    runDay14()
     System.Console.WriteLine("\n~~~ Press Enter ~~~")
     let ignoring = System.Console.ReadLine()
     0 // return an integer exit code
