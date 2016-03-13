@@ -3,14 +3,15 @@ open Day9
 open Day10
 open Day11
 open Day12
+open Day13
 open System.IO
 open System.Text.RegularExpressions
 
 let runDay12() = 
 //    sumNumbersFromJson "[1,[4,5],{\"c\":\"red\",\"b\":2},{\"q\":10}, 3]" 
 //    sumNoRedNumbersFromJson "[1,[4,5],{\"c\":\"red\",\"b\":2},{\"q\":10}, 3]" 
-    File.ReadAllText("day12data.txt") |> sumNumbersFromJson //"[1,[4,5],{\"c\":\"red\",\"b\":2},{\"q\":10}, 3]" 
-    File.ReadAllText("day12data.txt") |> sumNoRedNumbersFromJson //"[1,[4,5],{\"c\":\"red\",\"b\":2},{\"q\":10}, 3]" 
+    File.ReadAllText("day12data.txt") |> sumNumbersFromJson |> ignore //"[1,[4,5],{\"c\":\"red\",\"b\":2},{\"q\":10}, 3]" 
+    File.ReadAllText("day12data.txt") |> sumNoRedNumbersFromJson  |> ignore //"[1,[4,5],{\"c\":\"red\",\"b\":2},{\"q\":10}, 3]" 
     ()
 
 let runDay9() = 
@@ -40,11 +41,17 @@ let runDay9() =
         match str with
         | Regex "(.*?) to (.*) = (\d*)" [incity1; incity2; indistance] -> 
             {city1= incity1; city2= incity2; distance= System.Int32.Parse indistance}
+        | _ -> raise (System.ArgumentException "Bad syntax")
+
 
     let linz = lines |> List.collect (fun l -> [testRegex l])
     shortestDistance linz |> printfn "Shortest %A" 
     longestDistance linz |> printfn "Longest %A" 
     0
+
+let runDay13() = 
+//        File.ReadAllLines("day13data.txt") |> Array.toList |> calculateMostChange |> printfn "response = %A"
+        File.ReadAllLines("day13data.txt") |> Array.toList |> calculateMostChangeAddMe |> printfn "response = %A"
 
 let runDay11() = 
     getNextPasswords "hepxcrrq" passesComplexityRules |> Seq.take 2 |> printfn "next: %A"
@@ -71,7 +78,8 @@ let main argv =
     //runDay9()
     //runDay10()
 //    runDay11()
-    runDay12()
+    //runDay12()
+    runDay13()
 
     System.Console.WriteLine("\n~~~ Press Enter ~~~")
     let ignoring = System.Console.ReadLine()

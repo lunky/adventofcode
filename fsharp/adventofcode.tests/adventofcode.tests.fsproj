@@ -71,6 +71,7 @@
     <Compile Include="day11tests.fs" />
     <Compile Include="day12tests.fs" />
     <Content Include="packages.config" />
+    <Compile Include="day13tests.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FSharp.Data">
