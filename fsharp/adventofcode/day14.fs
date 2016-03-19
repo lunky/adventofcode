@@ -39,5 +39,8 @@ module Day14 =
                     let acc = acc @ Seq.toList winners
                     Tick (countdownTimer - 1) (acc)
                      )
-        Tick puzzleValue []
-                  
+        let results = Tick puzzleValue []
+        results
+        |> Seq.groupBy (fun x->x) |> Seq.sortBy (fun (key,vals) -> -1* Seq.length vals)  
+        |> Seq.map (fun (winner,wins) -> winner, (Seq.length wins))
+        |> Seq.head 
