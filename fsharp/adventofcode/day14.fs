@@ -22,9 +22,22 @@ module Day14 =
         flyThenRest (reindeer.rest + reindeer.duration) 0 seconds
 
     let getFastest rules time =
-            rules |> Seq.map (fun line -> 
+        let positions = rules |> Seq.map (fun line -> 
                             let rule = readReindeerRules line
                             let dist = calculateDistance rule time 
-                            printfn "%s travelled %d in %d seconds"  rule.name dist time
                             (dist, rule))
-            |> Seq.maxBy fst 
+        let max = Seq.maxBy fst positions 
+        positions |> Seq.where (fun x -> fst x = fst max) 
+
+    let getWinner rules puzzleValue = 
+        let rec Tick countdownTimer (acc : string list) = 
+            match countdownTimer with
+            | 0 -> acc
+            | _ ->  (
+                    let fastest = getFastest rules (puzzleValue - countdownTimer)
+                    let winners = Seq.map (fun (a, reindeer) -> reindeer.name) fastest
+                    let acc = acc @ Seq.toList winners
+                    Tick (countdownTimer - 1) (acc)
+                     )
+        Tick puzzleValue []
+                  

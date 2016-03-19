@@ -54,9 +54,18 @@ let runDay14() =
     printfn "Day14 :" 
     let puzzleValue = 2503
     let rules = File.ReadAllLines("day14data.txt") |> Array.toList 
-    let fastest = getFastest rules puzzleValue
+    let fastest = getFastest rules puzzleValue |> Seq.head
     printfn "*****"
     printfn "Furthest was %d km by %s" (fst fastest) (snd fastest).name
+    let results = getWinner rules puzzleValue 
+    let (winner,count) = 
+        results
+        |> Seq.groupBy (fun x->x) |> Seq.sortBy (fun (key,vals) -> -1* Seq.length vals)  
+        |> Seq.map (fun (winner,wins) -> winner, (Seq.length wins))
+        |> Seq.head 
+
+    printfn "*****"
+    printfn "Winner %A with %d wins" winner count
 
 let runDay13() = 
 //        File.ReadAllLines("day13data.txt") |> Array.toList |> calculateMostChange |> printfn "response = %A"

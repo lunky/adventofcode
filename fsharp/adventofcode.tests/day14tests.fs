@@ -40,31 +40,6 @@ let ``calculate flying distance in given one second reindeer 2`` () =
     calculateDistance comet 1|> should equal 16
 
 [<Test>]
-let ``After ten seconds, Comet has gone 140 km`` () = 
-    let comet = readReindeerRules "Comet can fly 14 km/s for 10 seconds, but then must rest for 127 seconds."
-    calculateDistance comet 10|> should equal 140
-
-[<Test>]
-let ``After 136 seconds, Comet has gone 140 km`` () = 
-    let comet = readReindeerRules "Comet can fly 14 km/s for 10 seconds, but then must rest for 127 seconds."
-    calculateDistance comet 136|> should equal 140
-
-[<Test>]
-let ``After 137 seconds, Comet has gone 140 km`` () = 
-    let comet = readReindeerRules "Comet can fly 14 km/s for 10 seconds, but then must rest for 127 seconds."
-    calculateDistance comet 137|> should equal 140
-    
-[<Test>]
-let ``After 138 seconds, Comet has gone 154 km`` () = 
-    let comet = readReindeerRules "Comet can fly 14 km/s for 10 seconds, but then must rest for 127 seconds."
-    calculateDistance comet 138|> should equal 154
-
-[<Test>]
-let ``After 139 seconds, Comet has gone 168 km`` () = 
-    let comet = readReindeerRules "Comet can fly 14 km/s for 10 seconds, but then must rest for 127 seconds."
-    calculateDistance comet 139|> should equal 168
-
-[<Test>]
 let ``After 10+127+9 seconds, Comet has gone 266 km`` () = 
     let comet = readReindeerRules "Comet can fly 14 km/s for 10 seconds, but then must rest for 127 seconds."
     calculateDistance comet 146|> should equal 266
@@ -98,9 +73,4 @@ let ``After 62 seconds, Vixen has gone 72 km`` () =
 let ``After 0 seconds, Vixen has gone 0 km`` () = 
     let vixen = readReindeerRules "Vixen can fly 8 km/s for 8 seconds, but then must rest for 53 seconds."
     calculateDistance vixen 0|> should equal 0
-
-[<Test>]
-let ``After 2503 seconds, Vixen has gone 2640 km`` () = 
-    let vixen = readReindeerRules "Vixen can fly 8 km/s for 8 seconds, but then must rest for 53 seconds."
-    calculateDistance vixen 2503|> should equal 2640
 
