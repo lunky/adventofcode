@@ -5,6 +5,7 @@ open Day11
 open Day12
 open Day13
 open Day14
+open Day15
 open System.IO
 open System.Text.RegularExpressions
 
@@ -50,6 +51,13 @@ let runDay9() =
     longestDistance linz |> printfn "Longest %A" 
     0
 
+let runDay15() = 
+//    getSet 100 100 4|> Seq.length  |> printfn "length %A" //Seq.iter (fun i -> printfn "count %A" i)
+    File.ReadAllLines("day15data.txt") |> parseRawIngredients |> Seq.toList
+    |> findOptimal
+    |> printfn "Answer %A"
+    ()
+
 let runDay14() =
     printfn "Day14 :" 
     let puzzleValue = 2503
@@ -87,13 +95,14 @@ let runDay10() =
 
 [<EntryPoint>]
 let main argv = 
-    printfn "main => "
+    printfn "%A : main => " System.DateTime.Now
 //    runDay9()
 //    runDay10()
 //    runDay11()
 //    runDay12()
 //    runDay13()
-    runDay14()
-    System.Console.WriteLine("\n~~~ Press Enter ~~~")
+//    runDay14()
+    runDay15()
+    printfn "\n%A : ~~~ Press Enter ~~~" System.DateTime.Now
     let ignoring = System.Console.ReadLine()
     0 // return an integer exit code
