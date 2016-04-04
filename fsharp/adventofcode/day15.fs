@@ -10,13 +10,13 @@ module Day15 =
             0
         else
             ret
-
     let scoreIngredients ingredients = 
         let capacity = (ingredients |>Seq.sumBy (fun (count,i)->count * i.capacity) ) |> negativeEqualsZero
         let durability = (ingredients |>Seq.sumBy (fun (count,i)->count * i.durability) ) |> negativeEqualsZero
         let flavor = (ingredients |>Seq.sumBy (fun (count,i)->count * i.flavor) ) |> negativeEqualsZero
         let texture = (ingredients |>Seq.sumBy (fun (count,i)->count * i.texture) ) |> negativeEqualsZero
-        capacity * durability * flavor * texture
+        let calories = (ingredients |>Seq.sumBy (fun (count,i)->count * i.calories) ) 
+        (capacity * durability * flavor * texture, calories)
 
     let rec incSeries (max: int) targetTotal (input: int list) =
         let tail = List.tail input 
@@ -49,16 +49,18 @@ module Day15 =
             {name=name; capacity=chunks.[0]; durability=chunks.[1]; flavor=chunks.[2]; texture=chunks.[3]; calories=chunks.[4]}
         )
 
-    let findOptimal (ingredients: Ingredient list)= 
+    let findOptimal (ingredients: Ingredient list)  = 
         let count = ingredients.Length
         getSet 100 100 ingredients.Length
-        |> Seq.maxBy (fun l -> 
+        |> Seq.map (fun l -> 
                 let option = [ for i in 0..ingredients.Length - 1-> (l.[i],ingredients.[i]) ]
-                let totes = scoreIngredients option 
+                let totes,calories = scoreIngredients option 
                 printfn "totes %A %A" l totes
-                totes
+                (l,totes,calories)
                 )
-        |> (fun l ->  // got it, just rerun to get the answer (could avoid this by adding to the input)
-                let option = [ for i in 0..ingredients.Length - 1-> (l.[i],ingredients.[i]) ]
-                printfn "%A" l
+        |> Seq.filter(fun (set,total, calories) -> calories=500 && total>0)
+        |> Seq.maxBy (fun (set,total, calories) -> total)
+        |> (fun (set,total, calories) ->  // got it, just rerun to get the answer (could avoid this by adding to the input)
+                let option = [ for i in 0..ingredients.Length - 1-> (set.[i],ingredients.[i]) ]
+                printfn "%A" set
                 scoreIngredients option )
